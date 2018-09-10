@@ -61,12 +61,12 @@ class ItemForm extends Component {
           <div className="col-3 flex">
             <input type="file" className="form-control" accept="image/*" onChange={(e)=>this.handleImageChange(e)}/>
             <input className="form-control mr-sm-2" type="text" placeholder="Name" aria-label="Name" value={this.state.inputValue} onChange={this.handleChange}/>
-            <button className="btn btn-outline-success my-2 my-sm-0" onClick={this.handleSubmit}>Add More</button>
+            <button className="btn btn-primary my-2 my-sm-0" onClick={this.handleSubmit}>Add More</button>
           </div>
           <div className="col-2 flex"></div>
           <div className="col-4 flex">
             <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" value={this.state.searchValue} onChange={this.handleSearch}/>
-            <button className="btn btn-outline-success my-2 my-sm-0" onClick={this.submitSearch}>Search</button>
+            <button className="btn btn-primary my-2 my-sm-0" onClick={this.submitSearch}>Search</button>
           </div>
           <div className="imgPreview">
             {$imagePreview}
