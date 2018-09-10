@@ -1,0 +1,54 @@
+
+/*NAVIGATION*/
+
+.nav-tabs .nav-active {
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #fff;
+    color: #333;
+}
+
+.nav-tabs>li>a:focus {
+    background-color: #fff;
+}
+
+.nav-tabs .nav-active:hover {
+    background-color: #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.error-msg {
+    animation: hide-animation 3s ease-in 0s;
+    visibility: visible;
+}
+
+.error-msg @keyframes hide-animation {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.error {
+    color: red;
+    font-size: small;
+}
+.flex {
+    display: flex;
+}
+
+.imagePreview {
+    text-align: center;
+    margin: 5px 15px;
+    height: 200px;
+    width: 500px;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    border-top: 5px solid gray;
+    border-bottom: 5px solid gray;
+
+}
