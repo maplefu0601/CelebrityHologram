@@ -5,7 +5,7 @@ class HologramItem extends React.Component {
     super();
   }
 
-  render() {console.log(this.props);
+  render() {
     let name = this.props.name;
     let onDelete = this.props.onDelete;
     let imageData = this.props.imageData;

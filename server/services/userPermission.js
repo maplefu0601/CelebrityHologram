@@ -2,11 +2,11 @@
 
 const db = require('../server').db;
 const ObjectID = require('mongodb').ObjectID;
-const passport = require('passport');
 
 class UserPermission {
-  constructor(token) {
-    this.userCollection = db.collection('users');
+  constructor(token, dbs) {
+    dbs = dbs || db;
+    this.userCollection = dbs.collection('users');
     this.userInfo = {};
     if(token) {
       this.userInfo = JSON.parse(Buffer.from(token.jwt.split('.')[1], 'base64').toString());

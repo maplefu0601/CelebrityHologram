@@ -1,0 +1,9 @@
+--recursive
+--colors
+--reporter spec
+--require @babel/register
+--require babel-polyfill
+--require test/mochasetup.js
+--require jsdom-global/register
+server/**/*.{spec.js}
+--exit

@@ -1,14 +1,9 @@
 'use strict';
 
-// get db connection 
 const db = require('../server').db;
 
-// get email services
 const email = require('../services/sparkpost');
 
-// ------ ACCOUNT LOCK OUT ------
-
-// check if user is locked out of account
 exports.checkLockOut = function(time) {
     // if no time then no lockout
     if (!time) {
@@ -48,7 +43,8 @@ exports.failedLogIn = function(ip, user, callback) {
     // push this fail onto the fails array
     lockObj.fails.push(FAIL_OBJ);
     // if more than 5 fails
-    if (lockObj.fails.length > 5) {
+    let maxFailNum = 5;
+    if (lockObj.fails.length > maxFailNum) {
         let validFails = lockObj.fails.filter((fail) => {
             return this.checkLockOut(fail.time);
         }); 
@@ -76,11 +72,6 @@ exports.failedLogIn = function(ip, user, callback) {
     });
 }.bind(this);
 
-// ------ EMAIL FLOOD LOCKS ------
-
-// Currently only used on forgotPasswordEmail as only email that could be repeatedly triggered by user
-
-// check if email notification of same type been sent in last 10 minutes
 exports.sentMailCheck = function(subject, sentMail) {
     // if no sentMail
     if (!sentMail) {

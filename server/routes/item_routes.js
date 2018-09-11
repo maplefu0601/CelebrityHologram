@@ -8,7 +8,7 @@ const items = require('../controllers/items');
 const Authentication = require('../controllers/authentication');
 // services
 const passport = require('passport');
-require('../services/passport.js'); // this needs to be run but is not directly referenced in this file
+require('../services/passport.js');
 
 // session false as we are not using cookies, using tokens
 const requireSignIn = passport.authenticate('local', { session: false });

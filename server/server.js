@@ -11,7 +11,7 @@ app.use(express.static('public'));
 app.use(morgan('combined'));
 
 // set the port
-app.set('port', (process.env.PORT || 8080));
+app.set('port', (process.env.PORT || 3000));
 
 // DB setup
 console.log(process.env.MONGO_URL);
@@ -32,7 +32,8 @@ mongo.connect(process.env.MONGO_URL, function (error, db) {
     
     // start the server
     app.listen(app.get('port'), function() {
-        console.log('Express server listening on port', app.get('port'));
+        console.log('server listening on port', app.get('port'));
     });
 
 });
+exports.app = app;

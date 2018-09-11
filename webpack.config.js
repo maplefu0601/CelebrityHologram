@@ -40,5 +40,5 @@ module.exports = {
             }
         ]
     },
-    devtool: process.env.NODE_ENV === 'production' ? 'nosources-source-map' : 'cheap-module-eval-source-map'
+    //devtool: process.env.NODE_ENV === 'production' ? 'nosources-source-map' : 'cheap-module-eval-source-map'
 };

@@ -72,7 +72,7 @@ module.exports = {
   },
   createItem: function createItem(req, res) {
     let userPermission = new UserPermission(req.cookies);
-    userPermission.canDelete(canDo => {
+    userPermission.canCreate(canDo => {
       if (!canDo) {
         return res.json({error: noPermissionMsg});
       }

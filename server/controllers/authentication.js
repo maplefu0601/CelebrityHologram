@@ -14,7 +14,6 @@ const comparePassword = require('../services/passport').comparePassword;
 const validate = require('./validate');
 const lockout = require('./lockout');
 
-
 // expiration for tokens and cookies
 const MAX_AGE = 1000 * 60 * 60 * 24 * 7; // 7 days
 
@@ -140,7 +139,6 @@ exports.signup = function(req, res, next) {
 
 exports.signin = function(req, res, next) {
     // If account was locked out before we can remove the lock out
-    console.log(req.user);
     if (req.user.lockOut && req.user.lockOut.lockedOut) {
         lockout.removeLockOut(req.user.email, function(err, success) {
             if (err) {
@@ -341,7 +339,7 @@ exports.resetpw = function(req, res, next) {
                 }
                 // Respond to request with a token now password is updated user is logged in
                 const USER_TOKEN = tokenForUser({ id: existingUser._id });
-                res.cookie('jwt', USER_TOKEN, { maxAge: MAX_AGE, httpOnly: true, secure: true });
+                res.cookie('jwt', USER_TOKEN, { maxAge: MAX_AGE, httpOnly: true});
                 res.send({ success: "You are now logged in" });
             });
         });
@@ -387,7 +385,7 @@ exports.changepw = function(req, res, next) {
         } else {
             // set the permissions date change
             const NOW = new Date().getTime();
-            let permissions = {
+            let permission = {
                 updatedAt: NOW
             };
             // hash the new password
@@ -396,13 +394,13 @@ exports.changepw = function(req, res, next) {
                     return next(err);
                 }
                 // update to db
-                db.collection('users').updateOne({ email: EMAIL }, { $set: { "password" : newHash, "permissions": permissions } }, function(err, updated) {
+                db.collection('users').updateOne({ email: EMAIL }, { $set: { "password" : newHash, "permission": permission } }, function(err, updated) {
                     if (err) {
                         return next(err);
                     }
                     // Respond to request with a new token now password is updated
                     const USER_TOKEN = tokenForUser({ id: req.user._id });
-                    res.cookie('jwt', USER_TOKEN, { maxAge: MAX_AGE, httpOnly: true, secure: true });
+                    res.cookie('jwt', USER_TOKEN, { maxAge: MAX_AGE, httpOnly: true });
                     res.send({ success: "Password has been updated" });
                 });
             });

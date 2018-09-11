@@ -3,14 +3,14 @@ const router = express.Router();
 
 // services
 const passport = require('passport');
-require('../services/passport.js'); // this needs to be run but is not directly referenced in this file
+require('../services/passport.js');
 
 const checkUserAuth = function(req, res) {
     passport.authenticate('jwt', { session: false }, function (err, user, info) {
         //console.log('authenticate:', err, user, info);
         if (err) { 
             req.logout();
-            res.clearCookie('jwt', { httpOnly: true, secure: true });
+            res.clearCookie('jwt', { httpOnly: true });
             return res.sendFile(process.cwd() + '/public/html/login.html');
         }
         if (user) {
@@ -18,7 +18,7 @@ const checkUserAuth = function(req, res) {
             return res.sendFile(process.cwd() + '/public/html/app.html');
         } else {
             req.logout();
-            res.clearCookie('jwt', { httpOnly: true, secure: true });
+            res.clearCookie('jwt', { httpOnly: true });
             return res.sendFile(process.cwd() + '/public/html/login.html');
         }
     })(req, res);

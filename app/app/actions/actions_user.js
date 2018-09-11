@@ -7,7 +7,7 @@ import { FETCH_USER, REMOVE_USER, EMAIL_CONFIRM, NEW_ALERT } from './types';
 export function logOutUser() {
     return function(dispatch) {
         return axios.post('/api/user/signout', {
-                headers: { authorization: "csrf token TO DO??" }
+                headers: { authorization: "csrf token " }
         })
             .then((response) => {
                 dispatch({
@@ -24,7 +24,7 @@ export function logOutUser() {
 export function fetchUserInfo() {
     return function(dispatch) {
         axios.get('/api/user/info', {
-                headers: { authorization: "csrf token TO DO??" }
+                headers: { authorization: "csrf token " }
         })
             .then((response) => {
                 dispatch({
@@ -42,7 +42,7 @@ export function fetchUserInfo() {
 export function requestEmailCode() {
     return function(dispatch) {
         axios.get('/api/user/emailcode', {
-                headers: { authorization: "csrf token TO DO??" }
+                headers: { authorization: "csrf token " }
         })
             .then((response) => {
                 dispatch({
@@ -60,7 +60,7 @@ export function requestEmailCode() {
 export function confirmEmailCode(emailCode) {
     return function(dispatch) {
         return axios.get('/api/user/verify/' + emailCode, {
-                headers: { authorization: "csrf token TO DO??" }
+                headers: { authorization: "csrf token " }
         })
             .then((response) => {
                 dispatch({
@@ -78,7 +78,7 @@ export function confirmEmailCode(emailCode) {
 // Change password
 export const changePassword = function(oldPassword, newPassword) {
     return axios.post('/api/user/password/change', {oldPassword, newPassword}, {
-                headers: { authorization: "csrf token TO DO??" }
+                headers: { authorization: "csrf token " }
         })
         .then((response) => {
             return response.data;
